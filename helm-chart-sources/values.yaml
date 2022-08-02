@@ -1,0 +1,27 @@
+# Default values for redis-with-sentinel.
+
+#Change storage class and capacity.
+storage:
+  storageClassName: ""
+  redisStorage: "10Gi"
+  sentinelStorage: "1Gi"
+
+#Redis and sentinel security pass.
+securityContext:
+  redisPass: "admin"
+  sentinelPass: "admin"
+
+#Redis recource and limits. 
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2048Mi
+  requests:
+    cpu: 500m
+    memory: 1024Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+podAnnotations: {}
+podSecurityContext: {}

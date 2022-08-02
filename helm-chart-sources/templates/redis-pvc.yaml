@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-redis-1
+spec:
+  storageClassName: {{ .Values.storage.storageClassName }}
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: {{ .Values.storage.redisStorage }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-redis-2
+spec:
+  storageClassName: {{ .Values.storage.storageClassName }}
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: {{ .Values.storage.redisStorage }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-redis-3
+spec:
+  storageClassName: {{ .Values.storage.storageClassName }}
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: {{ .Values.storage.redisStorage }}

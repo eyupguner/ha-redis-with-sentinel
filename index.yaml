@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  ha-redis-with-sentinel:
+  - apiVersion: v2
+    appVersion: 7.0.4
+    created: "2022-08-02T12:23:44.536091884+03:00"
+    description: HA Redis Cluster(Sentinel+Sentinel Proxy)
+    digest: 79cea0de9b360ffc4209171956f4aebbd8bcb4baa288550ea4b2677034a8f8f1
+    icon: https://cdn.icon-icons.com/icons2/2415/PNG/512/redis_plain_wordmark_logo_icon_146367.png
+    name: ha-redis-with-sentinel
+    type: application
+    urls:
+    - ha-redis-with-sentinel-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-08-02T12:23:44.535341852+03:00"

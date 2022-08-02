@@ -1,0 +1,73 @@
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: redis-sentinel-2
+  name: svc-redis-sentinel-2
+spec:
+  ports:
+  - port: 26379
+    protocol: TCP
+    targetPort: 26379
+  selector:
+    app: redis-sentinel-2
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis-sentinel-2
+  name: redis-sentinel-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-sentinel-2
+  template:
+    metadata:
+      labels:
+        app: redis-sentinel-2
+        redis_sentinel: "yes"
+    spec:
+      containers:
+      - image: eyupguner/redis-sentinel-auth
+        imagePullPolicy: Always
+        name: redis-sentinel
+        env:
+        - name: REDIS_PASS
+          value: {{ .Values.securityContext.redisPass }}
+        - name: SENTINEL_PASS
+          value: {{ .Values.securityContext.sentinelPass }}
+        - name: PROTECTED_MODE
+          value: "no"
+        - name: SENTINEL_QUORUM
+          value: "2"
+        - name: SENTINEL_DOWN_AFTER
+          value: "5000"
+        - name: SENTINEL_FAILOVER
+          value: "5000"
+        - name: REDIS_MASTER
+          value: "svc-redis-1"
+        - name: BIND_ADDR
+          value: "0.0.0.0"
+        - name: SENTINEL_SVC_IP
+          value: "svc-redis-sentinel-2"
+        - name: SENTINEL_SVC_PORT
+          value: "26379"
+        - name: SENTINEL_RESOLVE_HOSTNAMES
+          value: "yes"
+        - name: SENTINEL_ANNOUNCE_HOSTNAMES 
+          value: "yes"
+        - name: SENTINEL_CONFIG_FILE_DIR
+          value: "/sentinel-conf-file/" 
+        volumeMounts:
+        - name: "pvc-redis-sentinel"
+          mountPath: "/sentinel-conf-file/"
+      volumes:
+      - name: "pvc-redis-sentinel"
+        persistentVolumeClaim:
+          claimName: "pvc-redis-sentinel-2"
+---

@@ -1,0 +1,7 @@
+apiVersion: v2
+appVersion: 7.0.4
+description: HA Redis Cluster(Sentinel+Sentinel Proxy)
+icon: https://cdn.icon-icons.com/icons2/2415/PNG/512/redis_plain_wordmark_logo_icon_146367.png
+name: ha-redis-with-sentinel
+type: application
+version: 1.0.0
