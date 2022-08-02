@@ -1,4 +1,4 @@
-# Add Helm Reppo and Run Helm
+# Add Helm Repo Add and Run Helm
     helm repo add redis https://raw.githubusercontent.com/eyupguner/ha-redis-with-sentinel/main/
     helm upgrade --install <release-name> redis/ha-redis-with-sentinel -n <namespace>
 
