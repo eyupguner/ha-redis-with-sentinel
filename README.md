@@ -1,3 +1,7 @@
+# Add Helm Reppo and Run Helm
+    helm repo add redis https://raw.githubusercontent.com/eyupguner/ha-redis-with-sentinel/main/
+    helm upgrade --install <release-name> redis/ha-redis-with-sentinel -n <namespace>
+
 # HA Redis Cluster with Sentinel and Sentinel Proxy
     This chart will install ha redis cluster with sentinel on kubernetes. You can reach the source files on  https://github.com/eyupguner/ha-redis-with-sentinel. The Redis will work one master pod and two slaves pods. Slaves pods will replicate from master pod. If master pod crash, sentinels will select new master.  
 
